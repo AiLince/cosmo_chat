@@ -1,0 +1,60 @@
+body {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(41, 41, 41);
+    color: #ffffff;
+    margin: 30px;
+}
+
+h2 {
+    color: rgb(163, 91, 230);
+}
+
+.comment-service {
+    display: flex;
+    flex-direction: row;
+}
+
+input, textarea {
+    border-color: rgb(163, 91, 230);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.chat {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    width: 50%;
+}
+
+textarea {
+    height: 70px;
+}
+
+button {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+    background-color: rgb(163, 91, 230);
+    border-radius: 2px;
+    border-color: #ffffff;
+    color: #ffffff;
+    margin: 40px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(173, 126, 217);
+    font-size: larger;
+}
+
+
+#showFIO {
+    text-align: center;
+    font-size: smaller;
+    margin-bottom: 10px;
+}

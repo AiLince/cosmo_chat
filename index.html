@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Сервис комментариев со спам фильтром</h1>
+    <div class="comment-service">
+        <div class="form">
+            <h2>Оставьте ваш комментарий</h2>
+            <div id="showFIO">
+                <p>Показывать ваше имя?</p>
+                <label>Да
+                    <input type="radio" name="checkbox" id="yes">
+                </label>
+                <label>Нет
+                    <input type="radio" name="checkbox" id="no">
+                </label>
+            </div>
+            <p>Введите ваши ФИО</p>
+            <input type="text" id="FIO">
+            <p>Введите ссылку вашего аватара</p>
+            <input type="url" id="avatar-link" value="">
+            <p>Оставьте комментарий</p>
+            <textarea id="comment"></textarea>
+            <button type="reset" id="submit">Отправить</button>
+        </div>
+        <div class="chat">
+            <h2>Чат</h2>
+            <div id="chatComment">
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
