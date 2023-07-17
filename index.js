@@ -29,14 +29,16 @@ submit.addEventListener('click', () => {
     let formattedDate = formatDate(date);
 
     if (FIOInput.value !== "" && checkboxYes.checked) {
-        const message = `<img src=${avatar} width="70">` + '<br>' + FIOInput.value + ':' + '<br>' + commentInput.value + '<br>' + formattedDate + '<br>' + '<br>';
+        const message = `<img src=${avatar} width="70">` + '<br>' + FIOInput.value + ':' + '<br>' + commentInput.value + '<br>' + formattedDate + '<br>' + `<button class="delete-btn" onclick="deleteMessage(this)">Удалить</button>` + '<br>' + '<br>';
         chatComment.insertAdjacentHTML('beforeend', message);
         saveMessageToLocalstorage(message);
     } else {
-        const message = `<img src=${avatar} width="70">` + '<br>' + 'Username' + ':' + '<br>' + commentInput.value + '<br>' + formattedDate + '<br>' + '<br>';
+        const message = `<img src=${avatar} width="70">` + '<br>' + 'Username' + ':' + '<br>' + commentInput.value + '<br>' + formattedDate + '<br>' + `<button class="delete-btn" onclick="deleteMessage(this)">Удалить</button>` + '<br>' + '<br>';
         chatComment.insertAdjacentHTML('beforeend', message);
         saveMessageToLocalstorage(message);
     }
+
+    commentInput.value = '';
 });
 
 function formatDate(date) {
@@ -62,16 +64,17 @@ function saveMessageToLocalstorage(message) {
     localStorage.setItem('messages', JSON.stringify(messages));
 }
 
-function deleteMessage(index) {
+function deleteMessage(button) {
+    const messageElement = button.parentNode;
+    const index = Array.from(chatComment.children).indexOf(messageElement);
     let messages = localStorage.getItem('messages');
 
     if (messages) {
         messages = JSON.parse(messages);
         messages.splice(index, 1);
         localStorage.setItem('messages', JSON.stringify(messages));
+        reloadMessages();
     }
-
-    reloadMessages();
 }
 
 function reloadMessages() {
@@ -82,10 +85,19 @@ function reloadMessages() {
     if (messages) {
         messages = JSON.parse(messages);
 
-        for (let message of messages) {
-            chatComment.insertAdjacentHTML('beforeend', message);
-        }
+        messages.forEach((message) => {
+            const messageElement = document.createElement('div');
+            messageElement.innerHTML = message;
+            chatComment.appendChild(messageElement);
+        });
     }
 }
+
+commentInput.addEventListener('keydown', function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        submit.click();
+    }
+});
 
 window.addEventListener('DOMContentLoaded', reloadMessages);
